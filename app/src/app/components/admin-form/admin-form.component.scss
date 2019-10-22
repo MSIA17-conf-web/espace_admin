@@ -1,0 +1,21 @@
+.container {
+    min-width:250px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+.align-right {
+    text-align: right;
+  }
+  
+  input.align-right::-webkit-outer-spin-button,
+  input.align-right::-webkit-inner-spin-button {
+    display: none;
+  }
+  
+  input.align-right {
+    -moz-appearance: textfield;
+  }

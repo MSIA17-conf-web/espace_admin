@@ -1,0 +1,32 @@
+<mat-card class=" u-1/3 layout__item u-mt++ u-p container">
+    <mat-card-title>
+        Espace Admin
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="adminForm" class="form-container" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput formControlName="login" placeholder="Identifiant">
+            </mat-form-field>
+            <small *ngIf="submitted && formulaire.login.errors" class="invalid-feedback">
+                <div *ngIf="formulaire.login.errors.required">L'identifiant est requis</div>
+            </small>
+
+            <mat-form-field>
+                <input matInput formControlName="password" class="right-align" placeholder="Entrer votre mot de passe"
+                    [type]="hidePassword ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Cacher le mot de passe'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <small *ngIf="submitted && formulaire.password.errors" class="invalid-feedback">
+                <div *ngIf="formulaire.password.errors.required">Le mot de passe est requis</div>
+                <div *ngIf="formulaire.password.errors.minlength">Le mot de passe doit comporter au moins 6 caractères
+                </div>
+            </small>
+
+            <button mat-flat-button color="primary" class="flex__item--middle u-mt+"
+                type="sumbit">Connexion</button>
+        </form>
+    </mat-card-content>
+</mat-card>
