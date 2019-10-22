@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
+import { utils } from "src/app/utils/utils";
 
 import { environment } from 'src/environments/environment';
 
@@ -8,16 +9,17 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminService {
   private env = environment;
-  private admin = JSON.parse(localStorage.getItem("loggedInAdmin") || "false");
-  private superAdmin = JSON.parse(localStorage.getItem("loggedInSuperAdmin") || "false");
+  private admin = JSON.parse(localStorage.getItem(utils.LOGGED_IN_ADMIN) || "false");
+  private superAdmin = JSON.parse(localStorage.getItem(utils.LOGGED_IN_SUPER_ADMIN) || "false");
 
   constructor() { }
 
   public setAdmin(values: boolean) {
     this.admin = values;
 
-    if(this.admin){
-      localStorage.setItem("loggedInAdmin", "true");
+    if(values){
+      var curTime = new Date().getTime();
+      localStorage.setItem(utils.LOGGED_IN_ADMIN, JSON.stringify({access:values,time:curTime}));
     }
   }
 
@@ -41,7 +43,7 @@ export class AdminService {
     this.setAdmin(false);
     // this.setSuperAdmin(false);
     
-    localStorage.removeItem("loggedInAdmin");
+    localStorage.clear();
     // localStorage.removeItem("loggedInSuperAdmin");
   }
 

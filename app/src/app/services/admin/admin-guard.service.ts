@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { utils } from "src/app/utils/utils";
 
 import { AdminService } from './admin.service';
 
@@ -11,21 +12,32 @@ import { AdminService } from './admin.service';
 export class AdminGuardService implements CanActivate {
 
   constructor(private admin: AdminService,
-    private router: Router) {
-
-  }
+    private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    console.log("AdminGuardService", this.admin.getAdmin());
 
-    if (this.admin.getAdmin()) {
-      return true;
-    } else {
-      this.router.navigate(['connexion'])
-      return false
+      // session for 10 min not reload after refresh page. Set the same session with new time
+      this.validateSession(utils.LOGGED_IN_ADMIN, 10000);
+
+      if (this.admin.getAdmin()) {
+        return true;
+      } else {
+        this.router.navigate(['connexion'])
+        return false;
+      }
+  }
+
+  private validateSession(key, exp) {
+    var dataObj = JSON.parse(localStorage.getItem(key));
+
+    console.log("new Date().getTime() - dataObj.time", new Date().getTime() - dataObj.time);
+    
+    if (new Date().getTime() - dataObj.time > exp) {
+      this.admin.setAdmin(false);
+      // alert ("information has expired")
     }
   }
 }
