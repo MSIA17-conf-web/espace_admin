@@ -3,7 +3,7 @@
 <p><button mat-flat-button color="primary" class="flex__item--middle u-mt+" (click)="logout()">Déconnexion</button></p>
 
 <mat-tab-group>
-    <mat-tab *ngFor="let conference of listConferences2" [label]="conference.name">
+    <mat-tab *ngFor="let conference of listConferences" [label]="conference.name">
         <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let subject of conference.subjectList">{{ subject.name }}</mat-list-item>
         </mat-list> 
