@@ -32,8 +32,6 @@ export class AdminGuardService implements CanActivate {
 
   private validateSession(key, exp) {
     var dataObj = JSON.parse(localStorage.getItem(key));
-    console.log("dataObj", dataObj);
-
     
     if (dataObj) {
       console.log("new Date().getTime() - dataObj.time", new Date().getTime() - dataObj.time);

@@ -43,12 +43,9 @@ export class AdminFormComponent implements OnInit {
     }
     
     if(this.adminService.connection(values)){
-      alert("success");
       this.router.navigate(['conferences'])
     } else {
       this.formulaire["password"].reset();
-      
-      alert("retry");
     }
   }
 }
