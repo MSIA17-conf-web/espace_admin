@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MarkdownModule } from 'ngx-markdown';
 
-import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule } from "@angular/material";
+import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule } from "@angular/material";
 import { } from "@angular/material/form-field";
 import { } from "@angular/material/input";
 import { } from "@angular/material/icon";
@@ -20,6 +20,7 @@ import { ConferencesComponent } from './components/conferences/conferences.compo
 
 import { AdminService } from "./services/admin/admin.service";
 import { AdminGuardService } from "./services/admin/admin-guard.service";
+import { ConferenceService } from "./services/conference/conference.service";
 
 @NgModule({
   declarations: [
@@ -36,13 +37,14 @@ import { AdminGuardService } from "./services/admin/admin-guard.service";
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatTableModule,
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     MarkdownModule.forRoot()
   ],
-  providers: [AdminService, AdminGuardService],
+  providers: [AdminService, AdminGuardService, ConferenceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
