@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { utils } from "src/app/utils/utils";
 
 import { environment } from 'src/environments/environment';
@@ -12,7 +13,7 @@ export class AdminService {
   private admin = JSON.parse(localStorage.getItem(utils.LOGGED_IN_ADMIN) || "false");
   private superAdmin = JSON.parse(localStorage.getItem(utils.LOGGED_IN_SUPER_ADMIN) || "false");
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public setAdmin(values: boolean) {
     this.admin = values;
@@ -47,7 +48,7 @@ export class AdminService {
     // localStorage.removeItem("loggedInSuperAdmin");
   }
 
-  connection(values) {
+  public connection(values) {
     let admin = this.env.admin, superAdmin = this.env.superAdmin;
 
     if (values.login === admin.login && values.password === admin.password) {
@@ -60,5 +61,10 @@ export class AdminService {
 
     this.clearStorage();
     return false;
+  }
+
+  public logout(){
+    this.router.navigate(['connexion'])
+    this.clearStorage();
   }
 }
