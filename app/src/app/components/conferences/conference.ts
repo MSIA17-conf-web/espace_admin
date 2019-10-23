@@ -1,6 +1,7 @@
+import { ConferenceSubject } from "./conference-subject";
+
 export class Conference {
     name: string;
-    position: number;
-    weight: number;
-    symbol: string;
+    description: string;
+    subjectList: ConferenceSubject[];
 }

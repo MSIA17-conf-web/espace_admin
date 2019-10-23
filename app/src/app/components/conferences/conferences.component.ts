@@ -11,13 +11,13 @@ import { AdminService } from 'src/app/services/admin/admin.service';
   styleUrls: ['./conferences.component.scss']
 })
 export class ConferencesComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  conferences: Conference[];
+  displayedColumns: string[] = ['name', 'description', 'subjectList'];
+  listConferences: Conference[] = [];
 
   constructor(private conferenceService: ConferenceService, private adminService: AdminService) { }
 
   ngOnInit() {
-    this.conferences = this.conferenceService.getAllConferences();
+    this.listConferences = this.conferenceService.getAllConferences();
   }
 
   public logout(){

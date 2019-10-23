@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { MarkdownModule } from 'ngx-markdown';
 
-import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule } from "@angular/material";
+import { MatToolbarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatTabsModule, MatListModule } from "@angular/material";
 import { } from "@angular/material/form-field";
 import { } from "@angular/material/input";
 import { } from "@angular/material/icon";
@@ -39,8 +39,10 @@ import { GuestComponent } from './guest/guest.component';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatTableModule,
     MatCardModule,
+    MatTableModule,
+    MatTabsModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
