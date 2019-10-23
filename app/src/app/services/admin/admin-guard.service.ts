@@ -19,25 +19,30 @@ export class AdminGuardService implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
 
-      // session for 10 min not reload after refresh page. Set the same session with new time
-      this.validateSession(utils.LOGGED_IN_ADMIN, 10000);
+    // session for 10 min.
+    this.validateSession(utils.LOGGED_IN_ADMIN, 600000);
 
-      if (this.admin.getAdmin()) {
-        return true;
-      } else {
-        this.router.navigate(['connexion'])
-        return false;
-      }
+    if (this.admin.getAdmin()) {
+      return true;
+    } else {
+      this.router.navigate(['connexion'])
+      return false;
+    }
   }
 
   private validateSession(key, exp) {
     var dataObj = JSON.parse(localStorage.getItem(key));
+    console.log("dataObj", dataObj);
 
-    console.log("new Date().getTime() - dataObj.time", new Date().getTime() - dataObj.time);
     
-    if (new Date().getTime() - dataObj.time > exp) {
-      this.admin.setAdmin(false);
-      // alert ("information has expired")
+    if (dataObj) {
+      console.log("new Date().getTime() - dataObj.time", new Date().getTime() - dataObj.time);
+      if (new Date().getTime() - dataObj.time > exp) {
+        this.admin.setAdmin(false);
+        // alert ("information has expired")
+      } else {
+        this.admin.setAdmin(true);
+      }
     }
   }
 }
