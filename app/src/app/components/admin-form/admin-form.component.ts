@@ -14,8 +14,8 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class AdminFormComponent implements OnInit {
   private adminForm: FormGroup;
-  private submitted = false;
-  private hidePassword = true;
+  submitted = false;
+  hidePassword = true;
 
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) {
     this.adminService.clearStorage();
