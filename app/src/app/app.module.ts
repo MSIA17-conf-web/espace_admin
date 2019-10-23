@@ -21,12 +21,14 @@ import { ConferencesComponent } from './components/conferences/conferences.compo
 import { AdminService } from "./services/admin/admin.service";
 import { AdminGuardService } from "./services/admin/admin-guard.service";
 import { ConferenceService } from "./services/conference/conference.service";
+import { GuestComponent } from './guest/guest.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminFormComponent,
     ConferencesComponent,
+    GuestComponent,
   ],
   imports: [
     BrowserModule,
