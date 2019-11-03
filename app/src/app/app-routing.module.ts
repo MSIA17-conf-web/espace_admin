@@ -11,8 +11,8 @@ import { AdminGuardService } from './services/admin/admin-guard.service';
 const routes: Routes = [
   { path: '',   redirectTo: '/connexion', pathMatch: 'full' },
   { path: 'connexion',   component: AdminFormComponent },
-  { path: 'conferences',   component: ConferencesComponent, canActivate: [AdminGuardService] },
-  { path: 'clients',   component: GuestsComponent, canActivate: [AdminGuardService] }
+  { path: 'conferences',   component: ConferencesComponent/*, canActivate: [AdminGuardService] */},
+  { path: 'clients',   component: GuestsComponent/*, canActivate: [AdminGuardService]*/ }
 ];
 
 @NgModule({
