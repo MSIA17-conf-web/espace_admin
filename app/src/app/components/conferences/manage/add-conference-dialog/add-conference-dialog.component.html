@@ -1,0 +1,29 @@
+<form [formGroup]="addForm" (ngSubmit)="onSubmitForm(addForm.value)">
+    <h1 mat-dialog-title>Ajout d'une conférence
+        à {{data.thematicName}}</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput placeholder="Nom" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Liste des thématiques" formControlName="thematicName">
+                <mat-option *ngFor="let them of data.listConferences" [value]="them.name">
+                    {{conf.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <!-- <div mat-dialog-content>
+    <p>What's your favorite animal?</p>
+    <mat-form-field>
+        <input matInput formControlName="name">
+    </mat-form-field>
+</div> -->
+    <div mat-dialog-actions align="end">
+        <button mat-button (click)="closeForm()">Annuler</button>
+        <button type="submit" mat-button cdkFocusInitial [disabled]="addForm.invalid">Confirmer</button>
+    </div>
+</form>
