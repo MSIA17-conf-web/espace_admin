@@ -1,21 +1,36 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: "root"
 })
 export class GuestService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
-  getAllGuest() {
-    return [
-      { lastName: "Name 1", firstName: "Hydrogen", enterpriseName: "Pouette", email: "H" },
-      { lastName: "Name 2", firstName: "Helium", enterpriseName: "Pouat", email: "He" },
-      { lastName: "Name 3", firstName: "Lithium", enterpriseName: "coucou", email: "Li" },
-      { lastName: "Name 4", firstName: "Beryllium", enterpriseName: "wesh", email: "Be" },
-      { lastName: "Name 5", firstName: "Boron", enterpriseName: "alors", email: "B" },
-      { lastName: "Name 6", firstName: "Carbon", enterpriseName: "ça va", email: "C" },
-      { lastName: "Name 7", firstName: "Nitrogen", enterpriseName: "toi", email: "N" }
-    ];
+  getAllGuest(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      console.log("getAllGuest");
+      this.httpClient
+        .post("https://msia17conferences.com:9010/api", {
+          method: "GET",
+          url: "getAllGuest",
+          baseURL: "http://postgre_api:9010",
+          // headers: {
+          //   "Access-Control-Allow-Origin": "*",
+          //   "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+          // },
+          body: {
+            table: "guests",
+            orderBy: "lastName"
+          }
+        }).subscribe(res => {
+          console.log("Response from APIs", res);
+          resolve(res);
+        }, err => {
+          console.log("Error from APIs", err);
+          reject(err);
+        })
+    });
   }
 }

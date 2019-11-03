@@ -13,7 +13,7 @@ import { GuestService } from "src/app/services/guest/guest.service";
   styleUrls: ['./guests.component.scss']
 })
 export class GuestsComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'firstName', 'lastName', 'enterpriseName', 'email'];
+  displayedColumns: string[] = ['select', 'lastName', 'firstName', 'enterpriseName', 'email'];
   guests = new MatTableDataSource<Guest>();
   selection;
 
@@ -23,7 +23,9 @@ export class GuestsComponent implements OnInit {
 
   ngOnInit() {
     this.selection = new SelectionModel<Guest>(true, []);
-    this.guests.data = this.guestService.getAllGuest();
+
+    this.guestService.getAllGuest().then(res => this.guests.data = res.result)
+    .catch(err => console.log(err));
   }
 
   ngAfterViewInit() {
